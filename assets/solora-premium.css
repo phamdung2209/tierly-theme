@@ -1,0 +1,91 @@
+/* Solora premium layer — editorial reskin over Dawn. Loaded after base.css so :root wins. */
+
+:root {
+  --font-heading-family: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --buttons-radius: 999px;
+  --buttons-radius-outset: 999px;
+  --inputs-radius: 1.2rem;
+  --inputs-radius-outset: 1.2rem;
+  --media-radius: 1.6rem;
+  --product-card-corner-radius: 1.8rem;
+  --popup-corner-radius: 1.6rem;
+  --badge-corner-radius: 999px;
+
+  --solora-grad: linear-gradient(100deg, #FF7A2F, #FF4D6D);
+}
+
+/* Headings: editorial serif, tighter tracking */
+h1, h2, h3, .h0, .h1, .h2, .h3,
+.title, .banner__heading, .card__heading {
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+/* Primary buttons → warm gradient pill with hover lift */
+.button:not(.button--secondary):not(.button--tertiary),
+.shopify-payment-button__button--unbranded {
+  background: var(--solora-grad) !important;
+  border: none !important;
+  color: #fff !important;
+  box-shadow: 0 10px 26px -10px rgba(255, 77, 109, 0.55);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.button:not(.button--secondary):not(.button--tertiary)::after { display: none; }
+.button:not(.button--secondary):not(.button--tertiary):hover,
+.shopify-payment-button__button--unbranded:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px -10px rgba(255, 77, 109, 0.65);
+}
+
+/* Secondary/outline buttons → refined pill */
+.button--secondary {
+  border-radius: 999px;
+  border-width: 1.5px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.button--secondary:hover { transform: translateY(-2px); }
+
+/* Product cards: soft depth + gentle lift */
+.card-wrapper .card {
+  border-radius: var(--product-card-corner-radius);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-wrapper:hover .card {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -18px rgba(26, 20, 16, 0.28);
+}
+
+/* Links: refined underline */
+a { text-underline-offset: 0.25em; }
+
+/* Price emphasis */
+.price__regular .price-item,
+.price-item--regular { font-weight: 600; }
+
+/* Softer section rhythm on large screens */
+@media screen and (min-width: 990px) {
+  .title-wrapper-with-link { align-items: baseline; }
+}
+
+/* Warm header that blends into the hero (was a hard black bar) */
+.header-wrapper {
+  background-color: rgba(255, 247, 240, 0.82) !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+}
+.header, .header a, .header__heading-link, .header__menu-item,
+.header__active-menu-item, .header__icon, .list-menu__item {
+  color: #2E1D12 !important;
+}
+.header__icon .icon, .header__heading-link { stroke: currentColor; }
+.header__heading-link .h2, .header__heading { color: #2E1D12 !important; font-family: "Fraunces", serif; letter-spacing: -0.01em; }
+
+/* Announcement bar → warm, not black */
+.announcement-bar, .utility-bar { background: #2E1D12 !important; color: #FFF6EE !important; }
+.announcement-bar__message, .utility-bar a { color: #FFF6EE !important; }

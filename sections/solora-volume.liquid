@@ -1,0 +1,64 @@
+{%- comment -%} Solora "buy more, save more" showcase — demos Tierly volume pricing {%- endcomment -%}
+{%- style -%}
+  #SoloraVol-{{ section.id }} { background: radial-gradient(120% 130% at 50% 0%, {{ section.settings.bg_from }}, {{ section.settings.bg_to }}); color: #1A1410; padding: clamp(6rem,9vw,9rem) 2rem; }
+  #SoloraVol-{{ section.id }} .vol__head { max-width: 62rem; margin: 0 auto 5rem; text-align: center; }
+  #SoloraVol-{{ section.id }} .vol__eyebrow { font-family:"Inter",sans-serif; font-weight:600; font-size:1.3rem; letter-spacing:.14em; text-transform:uppercase; color:#FF5E3A; }
+  #SoloraVol-{{ section.id }} .vol__title { font-family:"Fraunces",serif; font-weight:600; font-size:clamp(3rem,5vw,4.6rem); line-height:1.05; letter-spacing:-.02em; margin:1.2rem 0 0; }
+  #SoloraVol-{{ section.id }} .vol__title em { font-style:italic; background:linear-gradient(100deg,#FF7A2F,#FF4D6D); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  #SoloraVol-{{ section.id }} .vol__sub { font-family:"Inter",sans-serif; font-size:1.7rem; line-height:1.6; opacity:.7; margin:1.6rem 0 0; }
+  #SoloraVol-{{ section.id }} .vol__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; max-width:96rem; margin:0 auto; }
+  #SoloraVol-{{ section.id }} .vol__card { position:relative; background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:2.4rem; padding:3.2rem 2.4rem; text-align:center; box-shadow:0 20px 50px -30px rgba(26,20,16,.4); transition:transform .25s ease; }
+  #SoloraVol-{{ section.id }} .vol__card:hover { transform:translateY(-6px); }
+  #SoloraVol-{{ section.id }} .vol__card--best { border:none; background:linear-gradient(160deg,#FF7A2F,#FF4D6D); color:#fff; box-shadow:0 28px 60px -24px rgba(255,77,109,.6); }
+  #SoloraVol-{{ section.id }} .vol__flag { position:absolute; top:-1.3rem; left:50%; transform:translateX(-50%); background:#1A1410; color:#fff; font-family:"Inter",sans-serif; font-weight:600; font-size:1.15rem; letter-spacing:.06em; text-transform:uppercase; padding:.6rem 1.4rem; border-radius:999px; white-space:nowrap; }
+  #SoloraVol-{{ section.id }} .vol__qty { font-family:"Inter",sans-serif; font-weight:600; font-size:1.5rem; opacity:.75; }
+  #SoloraVol-{{ section.id }} .vol__card--best .vol__qty { opacity:.9; }
+  #SoloraVol-{{ section.id }} .vol__off { font-family:"Fraunces",serif; font-weight:600; font-size:clamp(4rem,6vw,5.4rem); line-height:1; margin:1rem 0 .4rem; }
+  #SoloraVol-{{ section.id }} .vol__note { font-family:"Inter",sans-serif; font-size:1.4rem; opacity:.65; }
+  #SoloraVol-{{ section.id }} .vol__foot { text-align:center; margin-top:3.6rem; font-family:"Inter",sans-serif; font-size:1.5rem; opacity:.7; display:inline-flex; gap:.8rem; align-items:center; justify-content:center; width:100%; }
+  #SoloraVol-{{ section.id }} .vol__foot svg { color:#FF5E3A; flex:none; }
+  @media (max-width:749px){ #SoloraVol-{{ section.id }} .vol__grid{ grid-template-columns:1fr; } }
+{%- endstyle -%}
+<div id="SoloraVol-{{ section.id }}">
+  <div class="vol__head">
+    <p class="vol__eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="vol__title">Buy more, <em>save more.</em></h2>
+    <p class="vol__sub">{{ section.settings.subheading }}</p>
+  </div>
+  <div class="vol__grid">
+    <div class="vol__card">
+      <p class="vol__qty">Buy 3+</p>
+      <p class="vol__off">10%</p>
+      <p class="vol__note">off your order</p>
+    </div>
+    <div class="vol__card vol__card--best">
+      <span class="vol__flag">Most popular</span>
+      <p class="vol__qty">Buy 6+</p>
+      <p class="vol__off">18%</p>
+      <p class="vol__note">off your order</p>
+    </div>
+    <div class="vol__card">
+      <p class="vol__qty">Buy 12+</p>
+      <p class="vol__off">25%</p>
+      <p class="vol__note">off your order</p>
+    </div>
+  </div>
+  <p class="vol__foot">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    {{ section.settings.footnote }}
+  </p>
+</div>
+{% schema %}
+{
+  "name": "Solora volume deal",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Buy more, save more" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Set any tiers you like — Tierly stacks the right discount automatically as the cart grows. Bigger cart, bigger saving." },
+    { "type": "text", "id": "footnote", "label": "Footnote", "default": "Applied automatically at checkout — no code needed." },
+    { "type": "color", "id": "bg_from", "label": "Background top", "default": "#FFF6EE" },
+    { "type": "color", "id": "bg_to", "label": "Background bottom", "default": "#FFEFE4" }
+  ],
+  "presets": [{ "name": "Solora volume deal" }]
+}
+{% endschema %}

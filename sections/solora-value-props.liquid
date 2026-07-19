@@ -1,0 +1,45 @@
+{%- comment -%} Solora value props — Tierly features {%- endcomment -%}
+{%- style -%}
+  #SoloraVp-{{ section.id }} { background:{{ section.settings.bg }}; color:#2E1D12; padding:clamp(5rem,8vw,8rem) 2rem; }
+  #SoloraVp-{{ section.id }} .vp__grid { max-width:110rem; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:3rem; }
+  #SoloraVp-{{ section.id }} .vp__item { text-align:center; }
+  #SoloraVp-{{ section.id }} .vp__ic { width:5.2rem; height:5.2rem; margin:0 auto 1.6rem; display:grid; place-items:center; border-radius:1.6rem; background:linear-gradient(160deg,#FFE5D6,#FFE0E6); color:#FF5E3A; }
+  #SoloraVp-{{ section.id }} .vp__ic svg { width:2.6rem; height:2.6rem; }
+  #SoloraVp-{{ section.id }} .vp__t { font-family:"Fraunces",serif; font-weight:600; font-size:1.9rem; margin:0 0 .6rem; }
+  #SoloraVp-{{ section.id }} .vp__d { font-family:"Inter",sans-serif; font-size:1.45rem; line-height:1.55; opacity:.65; margin:0; }
+  @media (max-width:989px){ #SoloraVp-{{ section.id }} .vp__grid{ grid-template-columns:repeat(2,1fr); gap:3.5rem 2rem; } }
+{%- endstyle -%}
+<div id="SoloraVp-{{ section.id }}">
+  <div class="vp__grid">
+    <div class="vp__item">
+      <span class="vp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+      <h3 class="vp__t">Applied at checkout</h3>
+      <p class="vp__d">Quantity breaks are calculated and applied automatically — no coupon codes.</p>
+    </div>
+    <div class="vp__item">
+      <span class="vp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+      <h3 class="vp__t">No code needed</h3>
+      <p class="vp__d">Set everything from a clean admin. Nothing to touch in your theme.</p>
+    </div>
+    <div class="vp__item">
+      <span class="vp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+      <h3 class="vp__t">Target anything</h3>
+      <p class="vp__d">All products, specific products, or entire collections — your call.</p>
+    </div>
+    <div class="vp__item">
+      <span class="vp__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></span>
+      <h3 class="vp__t">See the lift</h3>
+      <p class="vp__d">A dashboard shows the average order value your volume pricing drives.</p>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Solora value props",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FFFDFB" }
+  ],
+  "presets": [{ "name": "Solora value props" }]
+}
+{% endschema %}

@@ -1,0 +1,37 @@
+{%- comment -%} Solora editorial marquee band {%- endcomment -%}
+{%- style -%}
+  #SoloraMq-{{ section.id }} { background: {{ section.settings.bg }}; color: {{ section.settings.ink }}; overflow: hidden; padding: {{ section.settings.pad }}px 0; border-top: 1px solid rgba(0,0,0,.05); border-bottom: 1px solid rgba(0,0,0,.05); }
+  #SoloraMq-{{ section.id }} .mq__track { display: flex; width: max-content; animation: mq-scroll {{ section.settings.speed }}s linear infinite; }
+  #SoloraMq-{{ section.id }} .mq__group { display: flex; align-items: center; }
+  #SoloraMq-{{ section.id }} .mq__item { font-family: "Fraunces", serif; font-style: italic; font-weight: 500; font-size: clamp(2rem, 3.4vw, 3.4rem); white-space: nowrap; padding: 0 2.4rem; }
+  #SoloraMq-{{ section.id }} .mq__dot { width: .7rem; height: .7rem; border-radius: 50%; background: linear-gradient(100deg,#FF7A2F,#FF4D6D); flex: none; }
+  @keyframes mq-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { #SoloraMq-{{ section.id }} .mq__track { animation: none; } }
+{%- endstyle -%}
+{%- assign phrases = section.settings.text | split: '·' -%}
+<div id="SoloraMq-{{ section.id }}">
+  <div class="mq__track">
+    {%- for n in (1..2) -%}
+      <div class="mq__group" {% if n == 2 %}aria-hidden="true"{% endif %}>
+        {%- for p in phrases -%}
+          <span class="mq__item">{{ p | strip }}</span>
+          <span class="mq__dot"></span>
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Solora marquee",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Phrases (separate with ·)", "default": "Small-batch roasted · Ethically sourced · Free shipping over $40 · Buy more, save more" },
+    { "type": "range", "id": "speed", "min": 10, "max": 60, "step": 5, "unit": "s", "label": "Scroll duration", "default": 30 },
+    { "type": "range", "id": "pad", "min": 8, "max": 48, "step": 2, "unit": "px", "label": "Padding", "default": 20 },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#1A1410" },
+    { "type": "color", "id": "ink", "label": "Text", "default": "#FFF6EE" }
+  ],
+  "presets": [{ "name": "Solora marquee" }]
+}
+{% endschema %}

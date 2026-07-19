@@ -1,0 +1,62 @@
+{
+  "sections": {
+    "hero": {
+      "type": "solora-hero",
+      "settings": {
+        "badge": "Powered by Tierly · Volume pricing",
+        "heading": "Sell more with",
+        "heading_accent": "volume pricing.",
+        "subheading": "Tierly adds automatic quantity breaks and tiered discounts right at checkout — no codes, no theme edits. Watch your average order value climb.",
+        "trust": "Applied at checkout · No code needed · Works on every theme",
+        "button_label_1": "Shop the demo",
+        "button_link_1": "shopify://collections/all",
+        "button_label_2": "See how it works",
+        "button_link_2": "",
+        "text_color": "#2E1D12"
+      }
+    },
+    "marquee": {
+      "type": "solora-marquee",
+      "settings": {
+        "text": "Automatic volume pricing · Applied at checkout · No code needed · Lifts average order value · Buy more, save more",
+        "speed": 30,
+        "pad": 20,
+        "bg": "#2E1D12",
+        "ink": "#FFF6EE"
+      }
+    },
+    "roasts": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured products",
+        "heading_size": "h1",
+        "collection": "automated-collection",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "outline",
+        "enable_desktop_slider": false,
+        "color_scheme": "background-1",
+        "image_ratio": "portrait",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 64,
+        "padding_bottom": 48
+      }
+    },
+    "volume": {
+      "type": "solora-volume",
+      "settings": {}
+    },
+    "props": {
+      "type": "solora-value-props",
+      "settings": {}
+    }
+  },
+  "order": ["hero", "marquee", "roasts", "volume", "props"]
+}
