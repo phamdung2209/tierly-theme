@@ -1,0 +1,43 @@
+{%- comment -%} Solora stats row — Tierly {%- endcomment -%}
+{%- style -%}
+  #SoloraStats-{{ section.id }} { padding: clamp(5rem, 7vw, 6rem) 2rem; background: {{ section.settings.bg }}; }
+  #SoloraStats-{{ section.id }} .st__grid { max-width: 108rem; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+  #SoloraStats-{{ section.id }} .st__cell { border-left: 1px solid var(--sol-line); }
+  #SoloraStats-{{ section.id }} .st__cell:first-child { border-left: none; }
+  #SoloraStats-{{ section.id }} .st__num { font-family: var(--sol-serif); font-weight: 500; font-size: clamp(2.6rem, 3.4vw, 3.2rem); letter-spacing: -0.02em; color: var(--sol-ink); }
+  #SoloraStats-{{ section.id }} .st__lbl { margin-top: 0.4rem; font-family: var(--sol-sans); font-size: 1.4rem; color: var(--sol-ink-soft); }
+  @media (max-width: 749px) {
+    #SoloraStats-{{ section.id }} .st__grid { grid-template-columns: repeat(2, 1fr); gap: 3rem 2rem; }
+    #SoloraStats-{{ section.id }} .st__cell:nth-child(3) { border-left: none; }
+  }
+{%- endstyle -%}
+<section id="SoloraStats-{{ section.id }}">
+  <div class="st__grid" data-sol-stagger>
+    {%- for i in (1..4) -%}
+      {%- assign num_key = 'stat_' | append: i | append: '_num' -%}
+      {%- assign lbl_key = 'stat_' | append: i | append: '_label' -%}
+      <div class="st__cell">
+        <div class="st__num">{{ section.settings[num_key] }}</div>
+        <div class="st__lbl">{{ section.settings[lbl_key] }}</div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Solora stats",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FFFBF7" },
+    { "type": "text", "id": "stat_1_num", "label": "Stat 1 number", "default": "No code" },
+    { "type": "text", "id": "stat_1_label", "label": "Stat 1 label", "default": "Nothing to touch in your theme" },
+    { "type": "text", "id": "stat_2_num", "label": "Stat 2 number", "default": "Any theme" },
+    { "type": "text", "id": "stat_2_label", "label": "Stat 2 label", "default": "Works out of the box" },
+    { "type": "text", "id": "stat_3_num", "label": "Stat 3 number", "default": "Automatic" },
+    { "type": "text", "id": "stat_3_label", "label": "Stat 3 label", "default": "Applied right at checkout" },
+    { "type": "text", "id": "stat_4_num", "label": "Stat 4 number", "default": "Minutes" },
+    { "type": "text", "id": "stat_4_label", "label": "Stat 4 label", "default": "From install to live" }
+  ],
+  "presets": [{ "name": "Solora stats" }]
+}
+{% endschema %}

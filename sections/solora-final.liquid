@@ -1,0 +1,35 @@
+{%- comment -%} Solora final CTA — Tierly {%- endcomment -%}
+{%- style -%}
+  #SoloraFinal-{{ section.id }} { padding: clamp(6rem, 9vw, 8rem) 2rem; margin: 0 2.4rem; border-radius: 3.2rem; text-align: center; background: linear-gradient(150deg, #FFE0C6, #FFD3DE 60%, #FFC9DD); }
+  #SoloraFinal-{{ section.id }} .kicker { font-family: var(--sol-sans); font-size: 1.2rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--sol-accent); }
+  #SoloraFinal-{{ section.id }} h2 { font-family: var(--sol-sans); font-weight: 700; font-size: clamp(3rem, 5vw, 4.6rem); line-height: 1.1; letter-spacing: -0.03em; color: var(--sol-ink); margin: 1.6rem auto 0; max-width: 24ch; }
+  #SoloraFinal-{{ section.id }} h2 em { font-family: var(--sol-serif); font-style: italic; font-weight: 500; color: var(--sol-pink); }
+  #SoloraFinal-{{ section.id }} .sol-btn { margin-top: 3.4rem; }
+  #SoloraFinal-{{ section.id }} .brands { margin-top: 4rem; display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; font-family: var(--sol-sans); font-size: 1.2rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(42, 27, 18, 0.4); }
+{%- endstyle -%}
+<section id="SoloraFinal-{{ section.id }}" data-sol-stagger>
+  <span class="kicker">{{ section.settings.kicker }}</span>
+  <h2>{{ section.settings.heading }} <em>{{ section.settings.heading_accent }}</em></h2>
+  <a class="sol-btn sol-btn--primary" href="{{ section.settings.button_link | default: '#' }}">{{ section.settings.button_label }}</a>
+  {%- if section.settings.brands != blank -%}
+    <div class="brands">
+      {%- assign items = section.settings.brands | split: '·' -%}
+      {%- for it in items -%}<span>{{ it | strip }}</span>{%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+{% schema %}
+{
+  "name": "Solora final CTA",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "The tier closed the sale" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "One more item unlocked a better price —" },
+    { "type": "text", "id": "heading_accent", "label": "Heading accent (italic)", "default": "they took it." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Add Tierly free" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "brands", "label": "Brand tags (separate with ·)", "default": "Apparel · Beauty · Supplements · Home · Coffee · Streetwear" }
+  ],
+  "presets": [{ "name": "Solora final CTA" }]
+}
+{% endschema %}

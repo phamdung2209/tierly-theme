@@ -3,60 +3,71 @@
     "hero": {
       "type": "solora-hero",
       "settings": {
-        "badge": "Powered by Tierly · Volume pricing",
-        "heading": "Sell more with",
-        "heading_accent": "volume pricing.",
-        "subheading": "Tierly adds automatic quantity breaks and tiered discounts right at checkout — no codes, no theme edits. Watch your average order value climb.",
-        "trust": "Applied at checkout · No code needed · Works on every theme",
-        "button_label_1": "Shop the demo",
+        "badge": "Volume pricing for Shopify",
+        "heading": "Bigger carts,",
+        "heading_accent": "bigger orders.",
+        "subheading": "Tierly adds automatic quantity breaks and tiered discounts right at checkout — no codes, no theme edits. Set a tier, and watch your average order value climb.",
+        "trust": "No code needed · Works on every theme · Live in minutes",
+        "button_label_1": "Install Tierly free",
         "button_link_1": "shopify://collections/all",
         "button_label_2": "See how it works",
         "button_link_2": "",
         "text_color": "#2E1D12"
       }
     },
-    "marquee": {
-      "type": "solora-marquee",
+    "demobar": {
+      "type": "solora-demobar",
+      "settings": {}
+    },
+    "stats": {
+      "type": "solora-stats",
       "settings": {
-        "text": "Automatic volume pricing · Applied at checkout · No code needed · Lifts average order value · Buy more, save more",
-        "speed": 30,
-        "pad": 20,
-        "bg": "#2E1D12",
-        "ink": "#FFF6EE"
+        "stat_1_num": "No code",
+        "stat_1_label": "Nothing to touch in your theme",
+        "stat_2_num": "Any theme",
+        "stat_2_label": "Works out of the box",
+        "stat_3_num": "Automatic",
+        "stat_3_label": "Applied right at checkout",
+        "stat_4_num": "Minutes",
+        "stat_4_label": "From install to live"
       }
     },
-    "roasts": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured products",
-        "heading_size": "h1",
-        "collection": "automated-collection",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "outline",
-        "enable_desktop_slider": false,
-        "color_scheme": "background-1",
-        "image_ratio": "portrait",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "enable_quick_add": false,
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "padding_top": 64,
-        "padding_bottom": 48
-      }
+    "feature": {
+      "type": "solora-feature",
+      "settings": {}
     },
-    "volume": {
-      "type": "solora-volume",
+    "usecases": {
+      "type": "solora-usecases",
+      "settings": {}
+    },
+    "how": {
+      "type": "solora-how",
       "settings": {}
     },
     "props": {
       "type": "solora-value-props",
       "settings": {}
+    },
+    "story": {
+      "type": "solora-story",
+      "settings": {}
+    },
+    "faq": {
+      "type": "solora-faq",
+      "blocks": {
+        "q1": { "type": "item", "settings": { "question": "Will it slow down my store?", "answer": "No. Tierly applies discounts at the checkout layer, so there's no heavy script on your storefront. Your Core Web Vitals stay clean." } },
+        "q2": { "type": "item", "settings": { "question": "Do I need a developer?", "answer": "No. Everything is set from Tierly's admin — pick quantities and discounts, choose what they apply to, and publish. Nothing to touch in your theme." } },
+        "q3": { "type": "item", "settings": { "question": "Does it work with my theme?", "answer": "Yes. Because the discount runs at checkout, Tierly works on any Shopify theme, out of the box — including custom ones." } },
+        "q4": { "type": "item", "settings": { "question": "What if I cancel?", "answer": "Your discounts simply stop applying. There's nothing left behind in your theme to clean up, since Tierly never edited it." } },
+        "q5": { "type": "item", "settings": { "question": "Which discount types are supported?", "answer": "Quantity breaks, tiered percentages, bundle pricing, and cart-value goals — targeted at all products, specific products, or whole collections." } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5"],
+      "settings": {}
+    },
+    "final": {
+      "type": "solora-final",
+      "settings": {}
     }
   },
-  "order": ["hero", "marquee", "roasts", "volume", "props"]
+  "order": ["hero", "demobar", "stats", "feature", "usecases", "how", "props", "story", "faq", "final"]
 }

@@ -1,0 +1,63 @@
+{%- style -%}
+  #SoloraStory-{{ section.id }} { padding: clamp(6rem, 8vw, 8rem) 2rem; background: {{ section.settings.bg }}; text-align: center; }
+  #SoloraStory-{{ section.id }} .sy__inner { max-width: 74rem; margin: 0 auto; }
+  #SoloraStory-{{ section.id }} .sy__mark { width: 4.2rem; height: auto; margin: 0 auto 2.2rem; display: block; }
+  #SoloraStory-{{ section.id }} .sol-title { margin-top: 1.4rem; }
+  #SoloraStory-{{ section.id }} .sol-lead { margin-top: 1.8rem; }
+  #SoloraStory-{{ section.id }} .sy__points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.4rem; margin-top: 4.4rem; text-align: left; }
+  #SoloraStory-{{ section.id }} .sy__pt { padding-top: 1.8rem; border-top: 1px solid var(--sol-line); }
+  #SoloraStory-{{ section.id }} .sy__pt h4 { font-family: var(--sol-sans); font-weight: 600; font-size: 1.5rem; color: var(--sol-ink); margin: 0 0 0.6rem; }
+  #SoloraStory-{{ section.id }} .sy__pt p { font-family: var(--sol-sans); font-size: 1.4rem; line-height: 1.55; color: var(--sol-ink-soft); margin: 0; }
+  #SoloraStory-{{ section.id }} .sy__link {
+    display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 3.4rem;
+    font-family: var(--sol-sans); font-weight: 600; font-size: 1.5rem; color: var(--sol-ink);
+    text-decoration: none; border-bottom: 1.5px solid var(--sol-accent); padding-bottom: 0.3rem;
+    transition: gap 0.2s ease;
+  }
+  #SoloraStory-{{ section.id }} .sy__link:hover { gap: 1.1rem; }
+  @media (max-width: 749px) { #SoloraStory-{{ section.id }} .sy__points { grid-template-columns: 1fr; gap: 1.8rem; } }
+{%- endstyle -%}
+<section id="SoloraStory-{{ section.id }}">
+  <span id="story" class="sol-anchor" aria-hidden="true"></span>
+  <div class="sy__inner" data-sol-stagger>
+    <img class="sy__mark" src="{{ 'solora-mark.png' | asset_url }}" alt="Solora" width="42" height="38" loading="lazy">
+    <span class="sol-eyebrow">{{ section.settings.eyebrow }}</span>
+    <h2 class="sol-title">{{ section.settings.heading }} <em>{{ section.settings.heading_accent }}</em></h2>
+    <p class="sol-lead">{{ section.settings.subheading }}</p>
+    <div class="sy__points">
+      <div class="sy__pt">
+        <h4>One person, end to end</h4>
+        <p>Designed, built, and supported by the same person. Nothing gets lost between teams.</p>
+      </div>
+      <div class="sy__pt">
+        <h4>Support from whoever wrote it</h4>
+        <p>Your message reaches the developer — not a queue reading from a script.</p>
+      </div>
+      <div class="sy__pt">
+        <h4>Small on purpose</h4>
+        <p>No investors to please, no feature bloat. Tierly does one job and does it properly.</p>
+      </div>
+    </div>
+    {%- if section.settings.link_label != blank -%}
+      <a class="sy__link" href="{{ section.settings.link | default: 'https://solora.dungpv.id.vn' }}" target="_blank" rel="noopener">
+        {{ section.settings.link_label }} &rarr;
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Solora story",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FFF4EC" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Built by Solora" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Built by one person," },
+    { "type": "text", "id": "heading_accent", "label": "Heading accent (italic)", "default": "not a committee." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Solora is a solo studio. Tierly is its first product — designed, coded, and supported by the same person who answers your email." },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "Meet Solora" },
+    { "type": "url", "id": "link", "label": "Link" }
+  ],
+  "presets": [{ "name": "Solora story" }]
+}
+{% endschema %}

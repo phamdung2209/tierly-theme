@@ -456,7 +456,7 @@
             {%- else -%}
               <span class="header__brand">
                 <span class="header__brand-mark" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="#fff"><rect x="5" y="6" width="14" height="3.4" rx="1.7"/><rect x="7" y="11.3" width="10" height="3.4" rx="1.7"/><rect x="9" y="16.6" width="6" height="3.4" rx="1.7"/></svg>
+                  <img src="{{ 'tierly-icon.png' | asset_url }}" alt="" width="27" height="27">
                 </span>
                 <span class="h2">{{ section.settings.brand_text | default: shop.name }}</span>
               </span>
@@ -590,7 +590,7 @@
             {%- else -%}
               <span class="header__brand">
                 <span class="header__brand-mark" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="#fff"><rect x="5" y="6" width="14" height="3.4" rx="1.7"/><rect x="7" y="11.3" width="10" height="3.4" rx="1.7"/><rect x="9" y="16.6" width="6" height="3.4" rx="1.7"/></svg>
+                  <img src="{{ 'tierly-icon.png' | asset_url }}" alt="" width="27" height="27">
                 </span>
                 <span class="h2">{{ section.settings.brand_text | default: shop.name }}</span>
               </span>
@@ -599,6 +599,31 @@
       {%- if request.page_type == 'index' -%}
         </h1>
       {%- endif -%}
+    {%- endif -%}
+
+    {%- if section.settings.nav_1_label != blank -%}
+      {%- liquid
+        assign home_url = routes.root_url
+        assign nav_1 = section.settings.nav_1_link | default: home_url
+        assign nav_2 = section.settings.nav_2_link
+        if nav_2 == blank
+          assign nav_2 = home_url | append: '#how'
+        endif
+        assign nav_3 = section.settings.nav_3_link
+        if nav_3 == blank
+          assign nav_3 = home_url | append: '#story'
+        endif
+        assign nav_4 = section.settings.nav_4_link
+        if nav_4 == blank
+          assign nav_4 = home_url | append: '#faq'
+        endif
+      -%}
+      <nav class="solora-nav" role="navigation">
+        <a href="{{ nav_1 }}"{% if request.page_type == 'index' %} aria-current="page"{% endif %}>{{ section.settings.nav_1_label }}</a>
+        {%- if section.settings.nav_2_label != blank -%}<a href="{{ nav_2 }}">{{ section.settings.nav_2_label }}</a>{%- endif -%}
+        {%- if section.settings.nav_3_label != blank -%}<a href="{{ nav_3 }}">{{ section.settings.nav_3_label }}</a>{%- endif -%}
+        {%- if section.settings.nav_4_label != blank -%}<a href="{{ nav_4 }}">{{ section.settings.nav_4_label }}</a>{%- endif -%}
+      </nav>
     {%- endif -%}
 
     <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header__localization{% endif %}">
@@ -730,7 +755,25 @@
       {%- endfor -%}
 
       {%- if section.settings.cta_secondary_label != blank -%}
-        <a href="{{ section.settings.cta_secondary_link | default: '#' }}" class="header__cta header__cta--ghost small-hide">{{ section.settings.cta_secondary_label }}</a>
+        {%- liquid
+          assign demo_href = section.settings.cta_secondary_link
+          if demo_href == blank
+            assign demo_product = section.settings.demo_product
+            unless demo_product
+              for candidate in collections.all.products
+                if candidate.available
+                  assign demo_product = candidate
+                  break
+                endif
+              endfor
+            endunless
+            assign demo_variant = demo_product.selected_or_first_available_variant
+            if demo_variant
+              assign demo_href = routes.cart_url | append: '/' | append: demo_variant.id | append: ':' | append: section.settings.demo_qty
+            endif
+          endif
+        -%}
+        <a href="{{ demo_href | default: '#' }}" class="header__cta header__cta--ghost small-hide">{{ section.settings.cta_secondary_label }}</a>
       {%- endif -%}
       {%- if section.settings.cta_primary_label != blank -%}
         <a href="{{ section.settings.cta_primary_link | default: '#' }}" class="header__cta header__cta--primary small-hide">{{ section.settings.cta_primary_label }}</a>
@@ -1124,7 +1167,7 @@
       "type": "text",
       "id": "cta_secondary_label",
       "label": "Secondary button label",
-      "default": "Live demo"
+      "default": "See the discount"
     },
     {
       "type": "url",
@@ -1141,7 +1184,34 @@
       "type": "url",
       "id": "cta_primary_link",
       "label": "Primary button link"
-    }
+    },
+    {
+      "type": "product",
+      "id": "demo_product",
+      "label": "Live demo product",
+      "info": "Builds a one-click demo cart that lands on checkout with the volume discount applied. Leave empty to use the first available product."
+    },
+    {
+      "type": "range",
+      "id": "demo_qty",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "label": "Live demo quantity",
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Navigation (marketing)"
+    },
+    { "type": "text", "id": "nav_1_label", "label": "Nav 1 label", "default": "Home" },
+    { "type": "url", "id": "nav_1_link", "label": "Nav 1 link" },
+    { "type": "text", "id": "nav_2_label", "label": "Nav 2 label", "default": "How it works" },
+    { "type": "url", "id": "nav_2_link", "label": "Nav 2 link" },
+    { "type": "text", "id": "nav_3_label", "label": "Nav 3 label", "default": "Our story" },
+    { "type": "url", "id": "nav_3_link", "label": "Nav 3 link" },
+    { "type": "text", "id": "nav_4_label", "label": "Nav 4 label", "default": "FAQ" },
+    { "type": "url", "id": "nav_4_link", "label": "Nav 4 link" }
   ],
   "blocks": [
     {

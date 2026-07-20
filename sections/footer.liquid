@@ -334,6 +334,10 @@
     </div>
     <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
       <div class="footer__copyright caption">
+        <a class="solora-by" href="https://solora.dungpv.id.vn" target="_blank" rel="noopener">
+          <img src="{{ 'solora-mark.png' | asset_url }}" alt="" width="20" height="18">
+          <span>Made by <strong>Solora</strong></span>
+        </a>
         <small class="copyright__content"
           >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
         </small>
