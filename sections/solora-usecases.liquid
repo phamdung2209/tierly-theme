@@ -1,0 +1,84 @@
+{%- style -%}
+  #SoloraUse-{{ section.id }} { padding: clamp(6rem, 8vw, 8rem) 2rem; background: {{ section.settings.bg }}; }
+  #SoloraUse-{{ section.id }} .uc__head { text-align: center; max-width: 60rem; margin: 0 auto 4.6rem; }
+  #SoloraUse-{{ section.id }} .sol-title { margin-top: 1.4rem; }
+  #SoloraUse-{{ section.id }} .sol-lead { margin-top: 1.6rem; }
+  #SoloraUse-{{ section.id }} .uc__grid { max-width: 108rem; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  #SoloraUse-{{ section.id }} .uc {
+    background: #fff; border: 1px solid var(--sol-line); border-radius: 1.8rem; padding: 2.6rem;
+    display: flex; flex-direction: column; transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  #SoloraUse-{{ section.id }} .uc:hover { transform: translateY(-4px); box-shadow: 0 24px 44px -30px rgba(42, 27, 18, 0.4); }
+  #SoloraUse-{{ section.id }} .uc__kind {
+    font-family: var(--sol-sans); font-weight: 700; font-size: 1.15rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--sol-accent); margin: 0;
+  }
+  #SoloraUse-{{ section.id }} .uc p { font-family: var(--sol-sans); font-size: 1.45rem; line-height: 1.6; color: var(--sol-ink-soft); margin: 1.2rem 0 0; }
+  #SoloraUse-{{ section.id }} .uc__tiers { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 2.2rem; padding-top: 1.8rem; border-top: 1px solid var(--sol-line); }
+  #SoloraUse-{{ section.id }} .uc__tier {
+    font-family: var(--sol-sans); font-size: 1.25rem; font-weight: 600; color: var(--sol-ink);
+    background: var(--sol-cream-2); border-radius: 999px; padding: 0.6rem 1.2rem; white-space: nowrap;
+  }
+  #SoloraUse-{{ section.id }} .uc__tier em { font-style: normal; color: var(--sol-accent); }
+  #SoloraUse-{{ section.id }} .uc__note { text-align: center; margin-top: 3.6rem; font-family: var(--sol-sans); font-size: 1.35rem; color: var(--sol-ink-faint); }
+  @media (max-width: 989px) { #SoloraUse-{{ section.id }} .uc__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 749px) { #SoloraUse-{{ section.id }} .uc__grid { grid-template-columns: 1fr; } }
+{%- endstyle -%}
+<section id="SoloraUse-{{ section.id }}">
+  <span id="use-cases" class="sol-anchor" aria-hidden="true"></span>
+  <div class="uc__head">
+    <span class="sol-eyebrow">{{ section.settings.eyebrow }}</span>
+    <h2 class="sol-title">{{ section.settings.heading }} <em>{{ section.settings.heading_accent }}</em></h2>
+    <p class="sol-lead">{{ section.settings.subheading }}</p>
+  </div>
+  <div class="uc__grid" data-sol-stagger>
+    <div class="uc">
+      <p class="uc__kind">Coffee roaster</p>
+      <p>Beans go stale fast, so shoppers buy small and often. Tiers at 3 and 6 bags give them a reason to stock the shelf instead.</p>
+      <div class="uc__tiers"><span class="uc__tier">3 bags <em>&minus;10%</em></span><span class="uc__tier">6 bags <em>&minus;18%</em></span></div>
+    </div>
+    <div class="uc">
+      <p class="uc__kind">Supplements</p>
+      <p>A bottle is usually a 30-day supply. Price the two- and three-month bundle so customers don't drift off between orders.</p>
+      <div class="uc__tiers"><span class="uc__tier">2 bottles <em>&minus;12%</em></span><span class="uc__tier">3 bottles <em>&minus;20%</em></span></div>
+    </div>
+    <div class="uc">
+      <p class="uc__kind">Apparel basics</p>
+      <p>Tees, socks and underwear get bought in multiples anyway. A three-pack tier makes the multiple worth reaching for.</p>
+      <div class="uc__tiers"><span class="uc__tier">3 items <em>&minus;15%</em></span><span class="uc__tier">5 items <em>&minus;22%</em></span></div>
+    </div>
+    <div class="uc">
+      <p class="uc__kind">Skincare</p>
+      <p>Routines pair naturally — cleanser, serum, moisturiser. Reward the full set instead of the hero product on its own.</p>
+      <div class="uc__tiers"><span class="uc__tier">2 items <em>&minus;10%</em></span><span class="uc__tier">4 items <em>&minus;20%</em></span></div>
+    </div>
+    <div class="uc">
+      <p class="uc__kind">Pet supplies</p>
+      <p>Food and litter are heavy, repeat purchases. Bulk tiers suit shoppers who want the saving without committing to a subscription.</p>
+      <div class="uc__tiers"><span class="uc__tier">2 packs <em>&minus;8%</em></span><span class="uc__tier">4 packs <em>&minus;15%</em></span></div>
+    </div>
+    <div class="uc">
+      <p class="uc__kind">Wholesale &amp; B2B</p>
+      <p>Trade buyers expect a break at volume. Set thresholds high enough that only genuine bulk orders reach them.</p>
+      <div class="uc__tiers"><span class="uc__tier">12 units <em>&minus;20%</em></span><span class="uc__tier">24 units <em>&minus;30%</em></span></div>
+    </div>
+  </div>
+  {%- if section.settings.note != blank -%}
+    <p class="uc__note">{{ section.settings.note }}</p>
+  {%- endif -%}
+</section>
+{% schema %}
+{
+  "name": "Solora use cases",
+  "tag": "section",
+  "settings": [
+    { "type": "color", "id": "bg", "label": "Background", "default": "#FFFBF7" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Use cases" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Built for stores" },
+    { "type": "text", "id": "heading_accent", "label": "Heading accent (italic)", "default": "like yours." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Volume pricing looks different in every category. Here's a sensible starting point for a few common ones." },
+    { "type": "text", "id": "note", "label": "Footnote", "default": "Example setups — every tier and threshold is yours to change." }
+  ],
+  "presets": [{ "name": "Solora use cases" }]
+}
+{% endschema %}

@@ -1,0 +1,58 @@
+{%- comment -%} Solora how-it-works — Tierly {%- endcomment -%}
+{%- style -%}
+  #SoloraHow-{{ section.id }} { padding: clamp(6rem, 8vw, 8rem) 2rem; }
+  #SoloraHow-{{ section.id }} .hw__grid { max-width: 108rem; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  #SoloraHow-{{ section.id }} .sol-title { margin-top: 1.4rem; font-size: clamp(2.6rem, 3.4vw, 3.6rem); }
+  #SoloraHow-{{ section.id }} .sol-lead { margin-top: 1.6rem; }
+  #SoloraHow-{{ section.id }} .steps { margin-top: 3rem; }
+  #SoloraHow-{{ section.id }} .step { display: flex; gap: 2rem; padding: 2.2rem 0; border-top: 1px solid var(--sol-line); }
+  #SoloraHow-{{ section.id }} .step:first-child { border-top: none; padding-top: 0; }
+  #SoloraHow-{{ section.id }} .step .no { width: 2.7rem; height: 2.7rem; border-radius: 50%; border: 1.5px solid var(--sol-accent); color: var(--sol-accent); display: grid; place-items: center; font-family: var(--sol-sans); font-weight: 700; font-size: 1.3rem; flex: none; }
+  #SoloraHow-{{ section.id }} .step h4 { font-family: var(--sol-serif); font-weight: 500; font-size: 2rem; line-height: 1.35; color: var(--sol-ink); margin: 0; }
+  #SoloraHow-{{ section.id }} .step p { font-family: var(--sol-sans); font-size: 1.45rem; color: var(--sol-ink-soft); margin: 0.5rem 0 0; line-height: 1.55; }
+  #SoloraHow-{{ section.id }} .mock { background: #fff; border: 1px solid var(--sol-line); border-radius: 2.2rem; padding: 2.6rem; box-shadow: 0 40px 80px -46px rgba(42, 27, 18, 0.4); }
+  #SoloraHow-{{ section.id }} .mock__head { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.8rem; }
+  #SoloraHow-{{ section.id }} .mock__head span:not(.t) { width: 1rem; height: 1rem; border-radius: 50%; background: var(--sol-line); flex: none; }
+  #SoloraHow-{{ section.id }} .mock__head .t { margin-left: auto; font-family: var(--sol-sans); font-size: 1.2rem; color: var(--sol-ink-faint); white-space: nowrap; }
+  #SoloraHow-{{ section.id }} .row { display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 1.6rem; border-radius: 1.2rem; background: var(--sol-cream-2); margin-bottom: 1rem; }
+  #SoloraHow-{{ section.id }} .row .k { font-family: var(--sol-sans); font-size: 1.35rem; font-weight: 500; color: var(--sol-ink); }
+  #SoloraHow-{{ section.id }} .row .v { font-family: var(--sol-serif); font-size: 1.8rem; color: var(--sol-accent); }
+  #SoloraHow-{{ section.id }} .row--plain { background: transparent; padding-top: 1.6rem; }
+  #SoloraHow-{{ section.id }} .row--plain .k:first-child { color: var(--sol-ink-faint); }
+  @media (max-width: 989px) { #SoloraHow-{{ section.id }} .hw__grid { grid-template-columns: 1fr; gap: 3rem; } }
+{%- endstyle -%}
+<section id="SoloraHow-{{ section.id }}">
+  <span id="how" class="sol-anchor" aria-hidden="true"></span>
+  <div class="hw__grid" data-sol-stagger>
+    <div>
+      <span class="sol-eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 class="sol-title">{{ section.settings.heading }} <em>{{ section.settings.heading_accent }}</em></h2>
+      <p class="sol-lead">{{ section.settings.subheading }}</p>
+      <div class="steps" data-sol-stagger>
+        <div class="step"><span class="no">1</span><div><h4>Set your tiers</h4><p>Choose the quantities and discounts from a clean admin — target all products, a few, or whole collections.</p></div></div>
+        <div class="step"><span class="no">2</span><div><h4>Publish in a click</h4><p>Tierly wires the discount into checkout. Nothing to touch in your theme.</p></div></div>
+        <div class="step"><span class="no">3</span><div><h4>Watch AOV climb</h4><p>A dashboard shows the average order value your volume pricing drives.</p></div></div>
+      </div>
+    </div>
+    <div class="mock">
+      <div class="mock__head"><span></span><span></span><span></span><span class="t">Tierly · offer editor</span></div>
+      <div class="row"><span class="k">Buy 3 or more</span><span class="v">10% off</span></div>
+      <div class="row"><span class="k">Buy 6 or more</span><span class="v">18% off</span></div>
+      <div class="row"><span class="k">Buy 12 or more</span><span class="v">25% off</span></div>
+      <div class="row row--plain"><span class="k">Applies to</span><span class="k">All products</span></div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Solora how it works",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "How it works" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Bigger carts," },
+    { "type": "text", "id": "heading_accent", "label": "Heading accent (italic)", "default": "on autopilot." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Three steps, a few minutes. No developer, no theme code, no risk." }
+  ],
+  "presets": [{ "name": "Solora how it works" }]
+}
+{% endschema %}

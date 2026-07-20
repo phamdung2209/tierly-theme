@@ -1,0 +1,88 @@
+{%- style -%}
+  #SoloraFooter-{{ section.id }} { background: var(--sol-ink); color: var(--sol-cream); padding: clamp(5rem, 7vw, 7rem) 2rem 3rem; }
+  #SoloraFooter-{{ section.id }} .ft__wrap { max-width: 108rem; margin: 0 auto; }
+  #SoloraFooter-{{ section.id }} .ft__top { display: grid; grid-template-columns: 1.7fr 1fr 1fr 1fr; gap: 4rem 3rem; }
+  #SoloraFooter-{{ section.id }} .ft__brand-row { display: flex; align-items: center; gap: 1.1rem; }
+  #SoloraFooter-{{ section.id }} .ft__logo { width: 3.2rem; height: 3.2rem; border-radius: 0.9rem; overflow: hidden; flex: none; }
+  #SoloraFooter-{{ section.id }} .ft__logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  #SoloraFooter-{{ section.id }} .ft__name { font-family: var(--sol-sans); font-weight: 700; font-size: 2rem; letter-spacing: -0.015em; }
+  #SoloraFooter-{{ section.id }} .ft__tag { font-family: var(--sol-sans); font-size: 1.4rem; line-height: 1.6; color: rgba(255, 251, 247, 0.55); margin: 1.6rem 0 0; max-width: 34ch; }
+  #SoloraFooter-{{ section.id }} .ft__col h3 { font-family: var(--sol-sans); font-size: 1.2rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 251, 247, 0.45); margin: 0 0 1.6rem; }
+  #SoloraFooter-{{ section.id }} .ft__col a { display: block; font-family: var(--sol-sans); font-size: 1.45rem; color: rgba(255, 251, 247, 0.8); text-decoration: none; padding: 0.5rem 0; transition: color 0.2s ease; }
+  #SoloraFooter-{{ section.id }} .ft__col a:hover { color: #fff; }
+  #SoloraFooter-{{ section.id }} .ft__bar { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; border-top: 1px solid rgba(255, 251, 247, 0.12); margin-top: 4.4rem; padding-top: 2.4rem; }
+  #SoloraFooter-{{ section.id }} .ft__legal { font-family: var(--sol-sans); font-size: 1.3rem; color: rgba(255, 251, 247, 0.4); }
+  #SoloraFooter-{{ section.id }} .ft__legal a { color: rgba(255, 251, 247, 0.6); text-decoration: none; }
+  #SoloraFooter-{{ section.id }} .ft__legal a:hover { color: #fff; }
+  #SoloraFooter-{{ section.id }} .ft__by { display: inline-flex; align-items: center; gap: 0.7rem; font-family: var(--sol-sans); font-size: 1.3rem; color: rgba(255, 251, 247, 0.6); text-decoration: none; transition: color 0.2s ease; }
+  #SoloraFooter-{{ section.id }} .ft__by:hover { color: #fff; }
+  #SoloraFooter-{{ section.id }} .ft__by img { width: 1.8rem; height: auto; display: block; }
+  #SoloraFooter-{{ section.id }} .ft__by strong { font-weight: 700; }
+  @media (max-width: 989px) { #SoloraFooter-{{ section.id }} .ft__top { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 599px) { #SoloraFooter-{{ section.id }} .ft__top { grid-template-columns: 1fr; gap: 3rem; } }
+{%- endstyle -%}
+<footer id="SoloraFooter-{{ section.id }}">
+  <div class="ft__wrap">
+    <div class="ft__top">
+      <div>
+        <div class="ft__brand-row">
+          <span class="ft__logo"><img src="{{ 'tierly-icon.png' | asset_url }}" alt="" width="32" height="32" loading="lazy"></span>
+          <span class="ft__name">{{ section.settings.brand_text }}</span>
+        </div>
+        <p class="ft__tag">{{ section.settings.tagline }}</p>
+      </div>
+
+      <div class="ft__col">
+        <h3>{{ section.settings.col_1_heading }}</h3>
+        <a href="{{ routes.root_url }}#how">How it works</a>
+        <a href="{{ routes.root_url }}#use-cases">Use cases</a>
+        <a href="{{ routes.root_url }}#faq">FAQ</a>
+        <a href="{{ routes.all_products_collection_url }}">Browse the demo store</a>
+      </div>
+
+      <div class="ft__col">
+        <h3>{{ section.settings.col_2_heading }}</h3>
+        {%- if section.settings.appstore_url != blank -%}
+          <a href="{{ section.settings.appstore_url }}" target="_blank" rel="noopener">Shopify App Store</a>
+        {%- endif -%}
+        {%- if section.settings.support_url != blank -%}
+          <a href="{{ section.settings.support_url }}">Support</a>
+        {%- endif -%}
+        <a href="{{ routes.root_url }}#story">Our story</a>
+      </div>
+
+      <div class="ft__col">
+        <h3>{{ section.settings.col_3_heading }}</h3>
+        <a href="{{ section.settings.privacy_url | default: 'https://solora.dungpv.id.vn/tierly/privacy/' }}" target="_blank" rel="noopener">Privacy</a>
+        <a href="{{ section.settings.terms_url | default: 'https://solora.dungpv.id.vn/tierly/terms/' }}" target="_blank" rel="noopener">Terms</a>
+      </div>
+    </div>
+
+    <div class="ft__bar">
+      <span class="ft__legal">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+      <a class="ft__by" href="{{ section.settings.solora_url | default: 'https://solora.dungpv.id.vn' }}" target="_blank" rel="noopener">
+        <img src="{{ 'solora-mark.png' | asset_url }}" alt="" width="18" height="16" loading="lazy">
+        <span>Made by <strong>Solora</strong></span>
+      </a>
+    </div>
+  </div>
+</footer>
+{% schema %}
+{
+  "name": "Solora footer",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "brand_text", "label": "Brand name", "default": "Tierly" },
+    { "type": "textarea", "id": "tagline", "label": "Tagline", "default": "Volume pricing for Shopify — automatic quantity breaks applied right at checkout. Built by Solora, a solo studio." },
+    { "type": "text", "id": "col_1_heading", "label": "Column 1 heading", "default": "Product" },
+    { "type": "text", "id": "col_2_heading", "label": "Column 2 heading", "default": "Resources" },
+    { "type": "text", "id": "col_3_heading", "label": "Column 3 heading", "default": "Legal" },
+    { "type": "url", "id": "appstore_url", "label": "Shopify App Store link" },
+    { "type": "url", "id": "support_url", "label": "Support link" },
+    { "type": "url", "id": "privacy_url", "label": "Privacy policy link", "info": "Defaults to the Tierly app policy on solora.dungpv.id.vn" },
+    { "type": "url", "id": "terms_url", "label": "Terms link", "info": "Defaults to the Tierly app terms on solora.dungpv.id.vn" },
+    { "type": "url", "id": "solora_url", "label": "Solora link" }
+  ],
+  "presets": [{ "name": "Solora footer" }]
+}
+{% endschema %}

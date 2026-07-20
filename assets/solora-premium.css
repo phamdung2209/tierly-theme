@@ -14,7 +14,32 @@
   --badge-corner-radius: 999px;
 
   --solora-grad: linear-gradient(100deg, #FF7A2F, #FF4D6D);
+
+  --sol-ink: #2A1B12;
+  --sol-ink-soft: #7A6656;
+  --sol-ink-faint: #A2917F;
+  --sol-cream: #FFFBF7;
+  --sol-cream-2: #FFF4EC;
+  --sol-line: rgba(42, 27, 18, 0.10);
+  --sol-line-2: rgba(42, 27, 18, 0.06);
+  --sol-accent: #FF5E3A;
+  --sol-pink: #FF4D6D;
+  --sol-grad: linear-gradient(100deg, #FF6A3D, #FF4D6D);
+  --sol-serif: "Fraunces", Georgia, serif;
+  --sol-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
+
+/* shared section utilities (Solora landing) */
+.sol-eyebrow { font-family: var(--sol-sans); font-weight: 600; font-size: 1.2rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sol-accent); }
+.sol-title { font-family: var(--sol-sans); font-weight: 700; font-size: clamp(3rem, 4.8vw, 4.6rem); line-height: 1.1; letter-spacing: -0.03em; color: var(--sol-ink); }
+.sol-title em, .sol-accent-italic { font-family: var(--sol-serif); font-style: italic; font-weight: 500; letter-spacing: -0.01em; background: var(--sol-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sol-lead { font-family: var(--sol-sans); font-size: 1.7rem; line-height: 1.6; color: var(--sol-ink-soft); }
+.sol-btn { display: inline-flex; align-items: center; gap: 0.8rem; font-family: var(--sol-sans); font-weight: 600; font-size: 1.5rem; text-decoration: none; padding: 1.4rem 2.8rem; border-radius: 999px; cursor: pointer; border: none; transition: transform 0.2s, box-shadow 0.2s, background 0.2s; }
+.sol-btn--primary { color: #fff; background: var(--sol-grad); box-shadow: 0 12px 30px -12px rgba(255, 77, 109, 0.55); }
+.sol-btn--primary:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -12px rgba(255, 77, 109, 0.65); }
+.sol-btn--ghost { color: var(--sol-pink); background: #fff; border: 1.5px solid rgba(255, 77, 109, 0.35); }
+.sol-btn--ghost:hover { transform: translateY(-2px); border-color: var(--sol-pink); }
+.sol-btn--sm { padding: 1.1rem 2rem; font-size: 1.4rem; }
 
 /* Headings: editorial serif, tighter tracking */
 h1, h2, h3, .h0, .h1, .h2, .h3,
@@ -49,7 +74,8 @@ body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; 
 }
 .button--secondary:hover { transform: translateY(-2px); }
 
-/* Product cards: soft depth + gentle lift */
+body { background: var(--sol-cream); }
+
 .card-wrapper .card {
   border-radius: var(--product-card-corner-radius);
   overflow: hidden;
@@ -59,6 +85,23 @@ body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; 
   transform: translateY(-4px);
   box-shadow: 0 20px 40px -18px rgba(26, 20, 16, 0.28);
 }
+.card__media img, .card .media { border-radius: 1.4rem; }
+.card__heading, .card__heading a, .card-information .card__heading {
+  font-family: var(--sol-sans); font-weight: 600; font-size: 1.5rem;
+  letter-spacing: -0.01em; color: var(--sol-ink);
+}
+.card__information, .card-information { padding-top: 1.2rem; }
+.price, .price-item { font-family: var(--sol-sans); font-size: 1.45rem; color: var(--sol-ink-soft); }
+.price--on-sale .price-item--sale { color: var(--sol-accent); font-weight: 700; }
+.price--on-sale .price-item--regular { color: var(--sol-ink-faint); }
+.card__badge .badge, .badge { font-family: var(--sol-sans); font-weight: 600; letter-spacing: 0.02em; }
+
+.collection-hero__title, .main-page-title, .product__title h1, .collection__title .title {
+  font-family: var(--sol-sans) !important; font-weight: 700; letter-spacing: -0.03em; color: var(--sol-ink);
+}
+.product__title h1 { font-size: clamp(2.6rem, 3.4vw, 3.6rem); line-height: 1.15; }
+.product .price, .product .price-item { font-size: 2rem; color: var(--sol-ink); }
+.product__description, .product__accordion { font-family: var(--sol-sans); color: var(--sol-ink-soft); }
 
 /* Links: refined underline */
 a { text-underline-offset: 0.25em; }
@@ -79,42 +122,57 @@ a { text-underline-offset: 0.25em; }
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
+/* floating pill overlays the hero and stays pinned while scrolling */
+.section-header { position: fixed !important; top: 0; left: 0; right: 0; z-index: 30; pointer-events: none; }
+.section-header .header { pointer-events: auto; }
+.shopify-section-header-hidden { transform: none !important; }
+html { scroll-behavior: smooth; }
+.sol-anchor { display: block; scroll-margin-top: 8rem; }
 .header.page-width {
   display: flex !important;
-  width: fit-content;
-  max-width: calc(100% - 4rem);
-  margin: 1.4rem auto 0 !important;
+  justify-content: space-between;
   align-items: center;
-  gap: 3.2rem;
-  padding: 0.7rem 0.8rem 0.7rem 2rem !important;
-  background: rgba(255, 255, 255, 0.9);
-  -webkit-backdrop-filter: blur(18px) saturate(1.4);
-  backdrop-filter: blur(18px) saturate(1.4);
-  border: 1px solid rgba(42, 27, 18, 0.06);
+  max-width: 96rem;
+  margin: 1.1rem auto 0 !important;
+  gap: 2rem;
+  padding: 0.4rem 1.5rem 0.4rem 1.6rem !important;
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(22px) saturate(1.7);
+  backdrop-filter: blur(22px) saturate(1.7);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 0 0 1px rgba(42, 27, 18, 0.04), 0 8px 26px -18px rgba(42, 27, 18, 0.22);
   border-radius: 999px;
-  box-shadow: 0 1px 2px rgba(42, 27, 18, 0.04), 0 12px 32px -18px rgba(42, 27, 18, 0.3);
 }
 .header__heading, .header__heading-link { margin: 0; }
 .header__inline-menu { margin: 0 !important; }
-.header__icons { gap: 0.8rem; margin-left: 0.4rem; }
+.header__icons { gap: 0.8rem; margin-left: 0.4rem; align-items: center; }
 
 /* brand — icon lockup + Inter wordmark, reads like an app brand */
 .header__brand { display: inline-flex; align-items: center; gap: 1rem; }
 .header__brand-mark {
-  width: 3.4rem; height: 3.4rem; border-radius: 1rem; flex: none;
-  background: var(--solora-grad); display: grid; place-items: center;
+  width: 2.7rem; height: 2.7rem; border-radius: 0.8rem; flex: none; overflow: hidden;
+  display: grid; place-items: center;
   box-shadow: 0 2px 8px -2px rgba(255, 77, 109, 0.4);
 }
-.header__brand-mark svg { width: 2.1rem; height: 2.1rem; }
+.header__brand-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .header__heading-link .h2 {
   font-family: var(--font-body-family) !important;
-  font-weight: 700; font-size: 2rem !important; letter-spacing: -0.015em; color: #2E1D12;
+  font-weight: 700; font-size: 1.65rem !important; letter-spacing: -0.015em; color: #2E1D12;
 }
 
-/* nav links */
-.header__inline-menu .list-menu--inline { gap: 0.4rem; }
-.header__menu-item { font-family: var(--font-body-family); font-weight: 500; font-size: 1.45rem; color: #2E1D12; opacity: 0.78; }
-.header__menu-item:hover { opacity: 1; }
+/* custom marketing nav — editable in Header settings; Dawn's store menu hidden on desktop */
+.header .header__inline-menu { display: none !important; }
+.solora-nav { display: flex; align-items: center; gap: 0.4rem; }
+.solora-nav a {
+  display: inline-flex; align-items: center;
+  font-family: var(--font-body-family); font-weight: 500; font-size: 1.4rem; letter-spacing: -0.003em;
+  color: #2E1D12; opacity: 0.7; text-decoration: none;
+  padding: 0.6rem 1.2rem; border-radius: 0.8rem;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+.solora-nav a:hover { opacity: 1; background: rgba(42, 27, 18, 0.05); }
+.solora-nav a[aria-current="page"] { opacity: 1; font-weight: 600; }
+@media screen and (max-width: 989px) { .solora-nav { display: none; } }
 
 /* clean like the reference — cart only, no search/account clutter */
 .header__icon--search, .header__icon--account { display: none !important; }
@@ -123,15 +181,41 @@ a { text-underline-offset: 0.25em; }
 /* CTA buttons — one accent (primary), neutral ghost */
 .header__cta {
   display: inline-flex; align-items: center; font-family: var(--font-body-family);
-  font-weight: 600; font-size: 1.4rem; line-height: 1; text-decoration: none;
-  padding: 1.05rem 1.9rem; border-radius: 999px; white-space: nowrap;
+  justify-content: center; font-weight: 600; font-size: 1.3rem; line-height: 1.15; text-decoration: none;
+  padding: 0.85rem 1.6rem; border: 1.5px solid transparent; border-radius: 999px; white-space: nowrap;
   transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
 }
-.header__cta--ghost { color: #2E1D12; border: 1.5px solid rgba(42, 27, 18, 0.12); }
-.header__cta--ghost:hover { background: rgba(42, 27, 18, 0.04); border-color: rgba(42, 27, 18, 0.24); transform: translateY(-1px); }
+.header__cta--ghost { color: #FF4D6D; border-color: rgba(255, 77, 109, 0.35); }
+.header__cta--ghost:hover { background: rgba(255, 77, 109, 0.06); border-color: #FF4D6D; transform: translateY(-1px); }
 .header__cta--primary { color: #fff !important; background: var(--solora-grad); box-shadow: 0 8px 20px -8px rgba(255, 77, 109, 0.5); }
 .header__cta--primary:hover { transform: translateY(-1px); box-shadow: 0 12px 26px -8px rgba(255, 77, 109, 0.6); }
 
 @media screen and (max-width: 989px) {
   .header.page-width { gap: 1.2rem; padding-left: 1.6rem !important; }
+}
+
+/* Solora byline in the footer — Tierly's parent studio */
+.solora-by {
+  display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+  text-decoration: none; color: inherit; opacity: 0.85; margin: 0 0 1.2rem;
+  transition: opacity 0.2s ease;
+}
+.solora-by:hover { opacity: 1; }
+.solora-by img { width: 2rem; height: auto; display: block; }
+.solora-by span { font-family: var(--sol-sans); font-size: 1.3rem; letter-spacing: -0.01em; }
+.solora-by strong { font-weight: 700; }
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-sol-reveal], [data-sol-stagger] > * {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  [data-sol-reveal].sol-in, [data-sol-stagger].sol-in > * { opacity: 1; transform: none; }
+  [data-sol-stagger].sol-in > *:nth-child(1) { transition-delay: 0.04s; }
+  [data-sol-stagger].sol-in > *:nth-child(2) { transition-delay: 0.12s; }
+  [data-sol-stagger].sol-in > *:nth-child(3) { transition-delay: 0.2s; }
+  [data-sol-stagger].sol-in > *:nth-child(4) { transition-delay: 0.28s; }
+  [data-sol-stagger].sol-in > *:nth-child(5) { transition-delay: 0.36s; }
+  [data-sol-stagger].sol-in > *:nth-child(n + 6) { transition-delay: 0.44s; }
 }

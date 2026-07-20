@@ -13,7 +13,7 @@
     position: relative;
     overflow: hidden;
     isolation: isolate;
-    padding: clamp(6rem, 12vw, 11rem) 2rem clamp(5rem, 9vw, 8rem);
+    padding: clamp(8rem, 12vw, 11rem) 2rem clamp(4rem, 7vw, 6rem);
     background: radial-gradient(120% 120% at 50% 0%, var(--sh-bg-from) 0%, var(--sh-bg-to) 60%, var(--sh-bg-to) 100%);
     color: var(--sh-ink);
     text-align: center;
@@ -37,11 +37,11 @@
   #SoloraHero-{{ section.id }} .sh__badge::before { content: ""; width: .8rem; height: .8rem; border-radius: 50%; background: var(--sh-grad-from); box-shadow: 0 0 0 .4rem rgba(255,122,47,.18); }
 
   #SoloraHero-{{ section.id }} .sh__title {
-    font-family: "Fraunces", Georgia, serif; font-weight: 600;
-    font-size: clamp(3.6rem, 7vw, 7rem); line-height: 1.02; letter-spacing: -.02em; margin: 0;
+    font-family: "Inter", -apple-system, sans-serif; font-weight: 800;
+    font-size: clamp(3.4rem, 5vw, 5.4rem); line-height: 1.08; letter-spacing: -.035em; margin: 0;
   }
   #SoloraHero-{{ section.id }} .sh__accent {
-    display: block; font-style: italic; font-weight: 500;
+    display: block; font-family: "Fraunces", Georgia, serif; font-style: italic; font-weight: 500;
     background: linear-gradient(100deg, var(--sh-grad-from), var(--sh-grad-to));
     -webkit-background-clip: text; background-clip: text; color: transparent;
     padding-bottom: .08em;
@@ -80,7 +80,7 @@
     <span class="sh__blob sh__blob--2"></span>
     <span class="sh__blob sh__blob--3"></span>
   </div>
-  <div class="sh__inner">
+  <div class="sh__inner" data-sol-stagger>
     {%- if section.settings.badge != blank -%}
       <span class="sh__badge">{{ section.settings.badge }}</span>
     {%- endif -%}
