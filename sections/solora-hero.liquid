@@ -71,6 +71,20 @@
   @keyframes sh-float-1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(3vw,2vw)} }
   @keyframes sh-float-2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-3vw,3vw)} }
   @keyframes sh-float-3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(2vw,-2vw)} }
+  @media (max-width: 749px) {
+    /* the pill header is fixed (~6rem tall incl. its margin) — clear it properly */
+    #SoloraHero-{{ section.id }} { padding: 9.5rem 1.6rem 3.6rem; }
+    #SoloraHero-{{ section.id }} .sh__badge { font-size: 1.2rem; margin-bottom: 1.8rem; padding: .6rem 1.2rem; }
+    #SoloraHero-{{ section.id }} .sh__sub { font-size: 1.55rem; margin-top: 1.8rem; }
+    #SoloraHero-{{ section.id }} .sh__cta { margin-top: 2.8rem; flex-direction: column; width: 100%; gap: 1rem; }
+    #SoloraHero-{{ section.id }} .sh__btn { width: 100%; justify-content: center; padding: 1.5rem 2rem; }
+    #SoloraHero-{{ section.id }} .sh__trust { margin-top: 2rem; font-size: 1.25rem; }
+    /* keep the aurora inside the viewport so it can never widen the page */
+    #SoloraHero-{{ section.id }} .sh__blob--1 { width: 70vw; height: 70vw; left: -18vw; }
+    #SoloraHero-{{ section.id }} .sh__blob--2 { width: 62vw; height: 62vw; right: -16vw; }
+    #SoloraHero-{{ section.id }} .sh__blob--3 { width: 56vw; height: 56vw; left: 26vw; }
+  }
+
   @media (prefers-reduced-motion: reduce) { #SoloraHero-{{ section.id }} .sh__blob { animation: none !important; } }
 {%- endstyle -%}
 

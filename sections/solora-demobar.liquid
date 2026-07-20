@@ -1,17 +1,31 @@
-{%- comment -%} Solora "see it on your store" demo bar — Tierly {%- endcomment -%}
+{%- comment -%}
+  Solora live-demo bar.
+  NOTE: the old "enter your-store.myshopify.com → preview" input was inert. A real
+  cross-store preview needs a backend (fetch {shop}/products.json server-side to dodge
+  CORS, plus caching + rate limiting) — see SOLORA-THEME-NOTES.md. Until that exists,
+  this points at THIS store, which genuinely runs Tierly, so every claim here is true.
+{%- endcomment -%}
 {%- style -%}
   #SoloraDemo-{{ section.id }} { padding: 0 2rem; margin: {{ section.settings.pull_up }}px auto 0; max-width: 92rem; position: relative; z-index: 3; }
   #SoloraDemo-{{ section.id }} .db__inner { display: flex; align-items: center; gap: 1.6rem; background: #fff; border: 1px solid var(--sol-line); border-radius: 999px; padding: 1.2rem 1.2rem 1.2rem 2.6rem; box-shadow: 0 30px 60px -34px rgba(42, 27, 18, 0.4); flex-wrap: wrap; }
   #SoloraDemo-{{ section.id }} .db__tag { display: inline-flex; align-items: center; gap: 0.7rem; font-family: var(--sol-sans); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sol-accent); white-space: nowrap; }
-  #SoloraDemo-{{ section.id }} .db__tag::before { content: ""; width: 0.7rem; height: 0.7rem; border-radius: 50%; background: #2ecc71; }
-  #SoloraDemo-{{ section.id }} .db__input { flex: 1; min-width: 18rem; border: none; background: var(--sol-cream-2); border-radius: 999px; padding: 1.3rem 2rem; font-family: var(--sol-sans); font-size: 1.45rem; color: var(--sol-ink); outline: none; }
-  #SoloraDemo-{{ section.id }} .db__input::placeholder { color: var(--sol-ink-faint); }
+  #SoloraDemo-{{ section.id }} .db__tag::before { content: ""; width: 0.7rem; height: 0.7rem; border-radius: 50%; background: #2ecc71; box-shadow: 0 0 0 .35rem rgba(46,204,113,.18); }
+  #SoloraDemo-{{ section.id }} .db__text { flex: 1; min-width: 20rem; font-family: var(--sol-sans); font-size: 1.45rem; line-height: 1.5; color: var(--sol-ink-soft); }
+
+  @media (max-width: 749px) {
+    /* no overlap trick on mobile — and never above the header/menu drawer */
+    #SoloraDemo-{{ section.id }} { padding: 0 1.6rem; margin-top: 1.2rem; z-index: auto; }
+    #SoloraDemo-{{ section.id }} .db__inner { border-radius: 2.2rem; padding: 2rem; flex-direction: column; align-items: stretch; text-align: center; gap: 1.2rem; }
+    #SoloraDemo-{{ section.id }} .db__tag { justify-content: center; }
+    #SoloraDemo-{{ section.id }} .db__text { min-width: 0; }
+    #SoloraDemo-{{ section.id }} .sol-btn { width: 100%; justify-content: center; }
+  }
 {%- endstyle -%}
 <section id="SoloraDemo-{{ section.id }}">
   <div class="db__inner" data-sol-reveal>
     <span class="db__tag">{{ section.settings.tag }}</span>
-    <input class="db__input" type="text" placeholder="{{ section.settings.placeholder }}" aria-label="{{ section.settings.placeholder }}">
-    <a class="sol-btn sol-btn--ghost sol-btn--sm" href="{{ section.settings.link_2 | default: '#' }}">{{ section.settings.label_2 }}</a>
+    <span class="db__text">{{ section.settings.text }}</span>
+    <a class="sol-btn sol-btn--ghost sol-btn--sm" href="{{ section.settings.link_2 | default: routes.all_products_collection_url }}">{{ section.settings.label_2 }}</a>
     <a class="sol-btn sol-btn--primary sol-btn--sm" href="{{ section.settings.link_1 | default: '#' }}">{{ section.settings.label_1 }}</a>
   </div>
 </section>
@@ -20,11 +34,12 @@
   "name": "Solora demo bar",
   "tag": "section",
   "settings": [
+    { "type": "paragraph", "content": "Points at this store, which really runs Tierly. A cross-store 'preview on YOUR store' needs a backend proxy — see SOLORA-THEME-NOTES.md." },
     { "type": "range", "id": "pull_up", "min": -80, "max": 40, "step": 4, "unit": "px", "label": "Pull up (overlap hero)", "default": -36 },
-    { "type": "text", "id": "tag", "label": "Tag", "default": "See it on your store" },
-    { "type": "text", "id": "placeholder", "label": "Input placeholder", "default": "your-store.myshopify.com" },
-    { "type": "text", "id": "label_2", "label": "Secondary button", "default": "Preview in store" },
-    { "type": "url", "id": "link_2", "label": "Secondary link" },
+    { "type": "text", "id": "tag", "label": "Tag", "default": "Live demo" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "This store runs Tierly for real — open any product and watch the savings ladder react as you change the quantity." },
+    { "type": "text", "id": "label_2", "label": "Secondary button", "default": "Open a product" },
+    { "type": "url", "id": "link_2", "label": "Secondary link", "info": "Leave blank to link to all products." },
     { "type": "text", "id": "label_1", "label": "Primary button", "default": "Install free" },
     { "type": "url", "id": "link_1", "label": "Primary link" }
   ],

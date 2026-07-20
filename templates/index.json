@@ -11,7 +11,7 @@
         "button_label_1": "Install Tierly free",
         "button_link_1": "shopify://collections/all",
         "button_label_2": "See how it works",
-        "button_link_2": "",
+        "button_link_2": "#how",
         "text_color": "#2E1D12"
       }
     },
@@ -31,6 +31,10 @@
         "stat_4_num": "Minutes",
         "stat_4_label": "From install to live"
       }
+    },
+    "surfaces": {
+      "type": "solora-surfaces",
+      "settings": {}
     },
     "feature": {
       "type": "solora-feature",
@@ -69,5 +73,5 @@
       "settings": {}
     }
   },
-  "order": ["hero", "demobar", "stats", "feature", "usecases", "how", "props", "story", "faq", "final"]
+  "order": ["hero", "demobar", "stats", "surfaces", "feature", "usecases", "how", "props", "story", "faq", "final"]
 }

@@ -1,35 +1,48 @@
-{%- comment -%} Solora reviews — Tierly. NOTE: placeholder testimonials — replace with real reviews before publishing. {%- endcomment -%}
+{%- comment -%}
+  Solora — real use-case cards (NOT testimonials).
+  Deliberately non-attributed: Tierly has no merchants yet, and this store is the
+  public demo, so inventing named reviews would be fabricated social proof.
+  Swap this for genuine App Store reviews (with the merchant's real store name)
+  once the app has them — the layout below takes them as-is.
+{%- endcomment -%}
 {%- style -%}
   #SoloraRev-{{ section.id }} { padding: clamp(6rem, 8vw, 8rem) 2rem; text-align: center; background: {{ section.settings.bg }}; }
   #SoloraRev-{{ section.id }} .sol-title { margin-top: 1.4rem; }
-  #SoloraRev-{{ section.id }} .stars { color: var(--sol-accent); font-size: 2rem; letter-spacing: 0.3rem; margin-top: 1.4rem; }
+  #SoloraRev-{{ section.id }} .sol-lead { max-width: 60rem; margin: 1.6rem auto 0; }
   #SoloraRev-{{ section.id }} .rv__grid { max-width: 108rem; margin: 4.4rem auto 0; columns: 3; column-gap: 2rem; text-align: left; }
-  #SoloraRev-{{ section.id }} .rv { break-inside: avoid; background: #fff; border: 1px solid var(--sol-line); border-radius: 1.8rem; padding: 2.4rem; margin-bottom: 2rem; }
-  #SoloraRev-{{ section.id }} .rv .s { color: var(--sol-accent); font-size: 1.3rem; letter-spacing: 0.2rem; }
-  #SoloraRev-{{ section.id }} .rv p { font-family: var(--sol-sans); font-size: 1.45rem; line-height: 1.6; color: var(--sol-ink); margin: 1.2rem 0 1.6rem; }
-  #SoloraRev-{{ section.id }} .rv .who { display: flex; align-items: center; gap: 1rem; }
-  #SoloraRev-{{ section.id }} .rv .av { width: 3.4rem; height: 3.4rem; border-radius: 50%; background: var(--sol-grad); flex: none; }
-  #SoloraRev-{{ section.id }} .rv .nm { font-family: var(--sol-sans); font-size: 1.35rem; font-weight: 600; color: var(--sol-ink); }
-  #SoloraRev-{{ section.id }} .rv .rl { font-family: var(--sol-sans); font-size: 1.2rem; color: var(--sol-ink-faint); }
-  @media (max-width: 989px) { #SoloraRev-{{ section.id }} .rv__grid { columns: 1; } }
+  #SoloraRev-{{ section.id }} .rv { break-inside: avoid; background: #fff; border: 1px solid var(--sol-line); border-radius: 1.8rem; padding: 2.4rem; margin-bottom: 2rem; transition: transform .2s ease, box-shadow .2s ease; }
+  #SoloraRev-{{ section.id }} .rv:hover { transform: translateY(-3px); box-shadow: 0 18px 36px -22px rgba(42,27,18,.4); }
+  #SoloraRev-{{ section.id }} .rv .tag { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--sol-sans); font-size: 1.15rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--sol-accent); }
+  #SoloraRev-{{ section.id }} .rv .tag::before { content: ""; width: .6rem; height: .6rem; border-radius: 50%; background: var(--sol-grad); flex: none; }
+  #SoloraRev-{{ section.id }} .rv h3 { font-family: var(--sol-sans); font-weight: 700; font-size: 1.65rem; letter-spacing: -.02em; color: var(--sol-ink); margin: 1rem 0 .8rem; }
+  #SoloraRev-{{ section.id }} .rv p { font-family: var(--sol-sans); font-size: 1.42rem; line-height: 1.6; color: var(--sol-ink-soft); margin: 0; }
+
+  @media (max-width: 1099px) { #SoloraRev-{{ section.id }} .rv__grid { columns: 2; } }
+  @media (max-width: 749px) {
+    #SoloraRev-{{ section.id }} { padding: 5rem 1.6rem; }
+    #SoloraRev-{{ section.id }} .rv__grid { columns: 1; margin-top: 3.2rem; column-gap: 0; }
+    #SoloraRev-{{ section.id }} .rv { padding: 2rem; margin-bottom: 1.4rem; }
+  }
 {%- endstyle -%}
 {%- liquid
-  assign quotes = section.settings.quotes | newline_to_br | split: '<br />'
-  assign names = section.settings.names | split: '|'
-  assign roles = section.settings.roles | split: '|'
+  assign tags = section.settings.tags | split: '|'
+  assign titles = section.settings.titles | split: '|'
+  assign bodies = section.settings.bodies | newline_to_br | split: '<br />'
 -%}
 <section id="SoloraRev-{{ section.id }}">
   <span class="sol-eyebrow">{{ section.settings.eyebrow }}</span>
   <h2 class="sol-title">{{ section.settings.heading }} <em>{{ section.settings.heading_accent }}</em></h2>
-  <div class="stars">★★★★★</div>
+  {%- if section.settings.lead != blank -%}<p class="sol-lead">{{ section.settings.lead }}</p>{%- endif -%}
   <div class="rv__grid" data-sol-reveal>
-    {%- for q in quotes -%}
-      {%- assign qt = q | strip -%}
-      {%- if qt != blank -%}
+    {%- for b in bodies -%}
+      {%- assign body = b | strip -%}
+      {%- if body != blank -%}
         <div class="rv">
-          <div class="s">★★★★★</div>
-          <p>{{ qt }}</p>
-          <div class="who"><span class="av"></span><div><div class="nm">{{ names[forloop.index0] | strip }}</div><div class="rl">{{ roles[forloop.index0] | strip }}</div></div></div>
+          {%- assign tag = tags[forloop.index0] | strip -%}
+          {%- if tag != blank -%}<span class="tag">{{ tag }}</span>{%- endif -%}
+          {%- assign title = titles[forloop.index0] | strip -%}
+          {%- if title != blank -%}<h3>{{ title }}</h3>{%- endif -%}
+          <p>{{ body }}</p>
         </div>
       {%- endif -%}
     {%- endfor -%}
@@ -37,18 +50,20 @@
 </section>
 {% schema %}
 {
-  "name": "Solora reviews",
+  "name": "Solora use cases grid",
   "tag": "section",
   "settings": [
-    { "type": "paragraph", "content": "Placeholder testimonials — replace with real reviews before publishing." },
+    { "type": "paragraph", "content": "Non-attributed use cases. Replace with real App Store reviews once the app has them — do not invent named testimonials." },
     { "type": "color", "id": "bg", "label": "Background", "default": "#FFFBF7" },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Reviews" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Don't take our word" },
-    { "type": "text", "id": "heading_accent", "label": "Heading accent (italic)", "default": "for it." },
-    { "type": "textarea", "id": "quotes", "label": "Quotes (one per line)", "default": "Set up three tiers in ten minutes and our average order value jumped almost right away.\nNo code, no theme mess. It just worked and the discount shows up right at checkout.\nThe dashboard showing the AOV lift sold my boss instantly.\nSupport answered in minutes and helped me target a single collection.\nSwitched from a coupon-code setup and never looked back.\nClean admin, sensible defaults, and it didn't slow the store down at all." },
-    { "type": "textarea", "id": "names", "label": "Names (separate with |)", "default": "Maya R.|Daniel K.|Priya S.|Tom W.|Lena F.|Omar B." },
-    { "type": "textarea", "id": "roles", "label": "Roles (separate with |)", "default": "Home & living|Supplements brand|Apparel & accessories|Coffee roaster|Skincare shop|Streetwear label" }
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Ways to use it" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Built for how you" },
+    { "type": "text", "id": "heading_accent", "label": "Heading accent (italic)", "default": "actually sell." },
+    { "type": "textarea", "id": "lead", "label": "Lead", "default": "Every tier, target and schedule below is something you can set up in a few minutes — no developer needed." },
+    { "type": "textarea", "id": "tags", "label": "Card tags (separate with |)", "default": "Coffee & pantry|Seasonal|Bulk buyers|Slow stock|Product page|Margins" },
+    { "type": "textarea", "id": "titles", "label": "Card titles (separate with |)", "default": "Sell by the bag, not the unit|Run a collection-wide push|Wholesale pricing, no second app|Move what's sitting still|Turn the ladder into a bundle picker|Protect the lines you never discount" },
+    { "type": "textarea", "id": "bodies", "label": "Card bodies (one per line)", "default": "Set 3 / 6 / 12 tiers so regulars stock up in one order instead of reordering every month.\nTarget a single collection and schedule a start and end date — the offer switches itself off when the season is over.\nGive deep tiers at 12+ so shops buying in bulk get their price on the same storefront, with no separate wholesale channel.\nUse a fixed price per item at higher quantities to clear stock that isn't moving, without touching your regular price.\nSwitch the product-page block to the Cards layout and the savings ladder reads like a bundle picker.\nExclude the products you never discount; every other product keeps following your store-wide rule."
+    }
   ],
-  "presets": [{ "name": "Solora reviews" }]
+  "presets": [{ "name": "Solora use cases grid" }]
 }
 {% endschema %}
