@@ -602,11 +602,27 @@
     {%- endif -%}
 
     {%- if section.settings.nav_1_label != blank -%}
+      {%- liquid
+        assign home_url = routes.root_url
+        assign nav_1 = section.settings.nav_1_link | default: home_url
+        assign nav_2 = section.settings.nav_2_link
+        if nav_2 == blank
+          assign nav_2 = home_url | append: '#how'
+        endif
+        assign nav_3 = section.settings.nav_3_link
+        if nav_3 == blank
+          assign nav_3 = home_url | append: '#story'
+        endif
+        assign nav_4 = section.settings.nav_4_link
+        if nav_4 == blank
+          assign nav_4 = home_url | append: '#faq'
+        endif
+      -%}
       <nav class="solora-nav" role="navigation">
-        <a href="{{ section.settings.nav_1_link | default: routes.root_url }}"{% if request.page_type == 'index' %} aria-current="page"{% endif %}>{{ section.settings.nav_1_label }}</a>
-        {%- if section.settings.nav_2_label != blank -%}<a href="{{ section.settings.nav_2_link | default: '#how' }}">{{ section.settings.nav_2_label }}</a>{%- endif -%}
-        {%- if section.settings.nav_3_label != blank -%}<a href="{{ section.settings.nav_3_link | default: '#story' }}">{{ section.settings.nav_3_label }}</a>{%- endif -%}
-        {%- if section.settings.nav_4_label != blank -%}<a href="{{ section.settings.nav_4_link | default: '#faq' }}">{{ section.settings.nav_4_label }}</a>{%- endif -%}
+        <a href="{{ nav_1 }}"{% if request.page_type == 'index' %} aria-current="page"{% endif %}>{{ section.settings.nav_1_label }}</a>
+        {%- if section.settings.nav_2_label != blank -%}<a href="{{ nav_2 }}">{{ section.settings.nav_2_label }}</a>{%- endif -%}
+        {%- if section.settings.nav_3_label != blank -%}<a href="{{ nav_3 }}">{{ section.settings.nav_3_label }}</a>{%- endif -%}
+        {%- if section.settings.nav_4_label != blank -%}<a href="{{ nav_4 }}">{{ section.settings.nav_4_label }}</a>{%- endif -%}
       </nav>
     {%- endif -%}
 
