@@ -454,7 +454,12 @@
                 }}
               </div>
             {%- else -%}
-              <span class="h2">{{ shop.name }}</span>
+              <span class="header__brand">
+                <span class="header__brand-mark" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="#fff"><rect x="5" y="6" width="14" height="3.4" rx="1.7"/><rect x="7" y="11.3" width="10" height="3.4" rx="1.7"/><rect x="9" y="16.6" width="6" height="3.4" rx="1.7"/></svg>
+                </span>
+                <span class="h2">{{ section.settings.brand_text | default: shop.name }}</span>
+              </span>
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}
@@ -583,7 +588,12 @@
                 }}
               </div>
             {%- else -%}
-              <span class="h2">{{ shop.name }}</span>
+              <span class="header__brand">
+                <span class="header__brand-mark" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="#fff"><rect x="5" y="6" width="14" height="3.4" rx="1.7"/><rect x="7" y="11.3" width="10" height="3.4" rx="1.7"/><rect x="9" y="16.6" width="6" height="3.4" rx="1.7"/></svg>
+                </span>
+                <span class="h2">{{ section.settings.brand_text | default: shop.name }}</span>
+              </span>
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}
@@ -718,6 +728,13 @@
             {% render block %}
         {%- endcase -%}
       {%- endfor -%}
+
+      {%- if section.settings.cta_secondary_label != blank -%}
+        <a href="{{ section.settings.cta_secondary_link | default: '#' }}" class="header__cta header__cta--ghost small-hide">{{ section.settings.cta_secondary_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.cta_primary_label != blank -%}
+        <a href="{{ section.settings.cta_primary_link | default: '#' }}" class="header__cta header__cta--primary small-hide">{{ section.settings.cta_primary_label }}</a>
+      {%- endif -%}
 
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {%- liquid
@@ -1092,6 +1109,38 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Solora / Tierly branding"
+    },
+    {
+      "type": "text",
+      "id": "brand_text",
+      "label": "Brand name (shown when no logo)",
+      "default": "Tierly"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_label",
+      "label": "Secondary button label",
+      "default": "Live demo"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_label",
+      "label": "Primary button label",
+      "default": "Install Tierly"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_link",
+      "label": "Primary button link"
     }
   ],
   "blocks": [
