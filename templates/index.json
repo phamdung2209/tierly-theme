@@ -17,7 +17,9 @@
     },
     "demobar": {
       "type": "solora-demobar",
-      "settings": {}
+      "settings": {
+        "label_1": ""
+      }
     },
     "stats": {
       "type": "solora-stats",

@@ -26,7 +26,9 @@
     <span class="db__tag">{{ section.settings.tag }}</span>
     <span class="db__text">{{ section.settings.text }}</span>
     <a class="sol-btn sol-btn--ghost sol-btn--sm" href="{{ section.settings.link_2 | default: routes.all_products_collection_url }}">{{ section.settings.label_2 }}</a>
-    <a class="sol-btn sol-btn--primary sol-btn--sm" href="{{ section.settings.link_1 | default: '#' }}">{{ section.settings.label_1 }}</a>
+    {%- if section.settings.label_1 != blank -%}
+      <a class="sol-btn sol-btn--primary sol-btn--sm" href="{{ section.settings.link_1 | default: '#' }}">{{ section.settings.label_1 }}</a>
+    {%- endif -%}
   </div>
 </section>
 {% schema %}
