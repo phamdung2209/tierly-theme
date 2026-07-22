@@ -1,1 +1,57 @@
-{"sections":{"cart-items":{"type":"main-cart-items","settings":{"padding_top":36,"padding_bottom":36}},"cart-footer":{"type":"main-cart-footer","blocks":{"subtotal":{"type":"subtotal","settings":{}},"buttons":{"type":"buttons","settings":{}}},"block_order":["subtotal","buttons"],"settings":{}},"1784476823d59c4087":{"type":"apps","blocks":{"solora_tierly_cart_upsell_YAadB4":{"type":"shopify:\/\/apps\/solora-tierly\/blocks\/cart-upsell\/019f2da3-d61d-7fde-81bc-b6f21fab7e46","settings":{"title":"Unlock bigger savings","show_savings":true,"accent_color":"#1a7f37","radius":12,"text_savings":"Total savings","text_add":"Add","text_more":"more to","text_save":"save","text_item":"\/item"}}},"block_order":["solora_tierly_cart_upsell_YAadB4"],"settings":{"include_margins":true}}},"order":["cart-items","cart-footer","1784476823d59c4087"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "cart-items": {
+      "type": "main-cart-items",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cart-footer": {
+      "type": "main-cart-footer",
+      "blocks": {
+        "solora_tierly_cart_upsell_B6Tkg7": {
+          "type": "shopify://apps/solora-tierly/blocks/cart-upsell/019f2da3-d61d-7fde-81bc-b6f21fab7e46",
+          "settings": {
+            "title": "Unlock bigger savings",
+            "show_savings": true,
+            "accent_color": "#1a7f37",
+            "radius": 12,
+            "text_savings": "Total savings",
+            "text_add": "Add",
+            "text_more": "more to",
+            "text_save": "save",
+            "text_item": "/item"
+          }
+        },
+        "subtotal": {
+          "type": "subtotal",
+          "settings": {}
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "solora_tierly_cart_upsell_B6Tkg7",
+        "subtotal",
+        "buttons"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "cart-items",
+    "cart-footer"
+  ]
+}
