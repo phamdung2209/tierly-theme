@@ -146,6 +146,28 @@ body.template-product .quantity__input { font-family: var(--sol-sans); font-weig
 body.template-product .quantity__button { color: var(--sol-ink-soft); }
 body.template-product .quantity__button:hover { color: var(--sol-accent); }
 
+body.template-product .product-form__input input[type='radio'] + label {
+  border-color: var(--sol-line) !important;
+  background-color: #fff !important;
+  color: var(--sol-ink) !important;
+  font-family: var(--sol-sans); font-weight: 600;
+}
+body.template-product .product-form__input input[type='radio'] + label:before { box-shadow: none !important; }
+body.template-product .product-form__input input[type='radio'] + label:hover { border-color: var(--sol-accent) !important; }
+body.template-product .product-form__input input[type='radio']:checked + label {
+  background: var(--sol-grad) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+}
+body.template-product .product-form__input input[type='radio']:disabled + label,
+body.template-product .product-form__input input[type='radio'].disabled + label {
+  border-color: var(--sol-line) !important; color: var(--sol-ink-faint) !important; background: var(--sol-cream-2) !important;
+}
+body.template-product .product-form__input input[type='radio']:disabled:checked + label,
+body.template-product .product-form__input input[type='radio'].disabled:checked + label {
+  background: var(--sol-cream-2) !important; color: var(--sol-ink-faint) !important;
+}
+
 body.template-product .product-form__submit {
   border-radius: 999px !important; min-height: 5.2rem;
   font-family: var(--sol-sans); font-weight: 600; font-size: 1.5rem;
